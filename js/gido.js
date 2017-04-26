@@ -1,5 +1,5 @@
             $( function() {
-		$( "#sutrix_slider" ).defaultPluginName( {
+		$( "#sutrix_slider" ).simpleSlider( {
                     auto    : true,
                     delay   : 3000,
                     widthLi : '980',
@@ -18,10 +18,10 @@
             // minified (especially when both are regularly referenced in your plugin).
 
             // Create the defaults once
-            var pluginName = 'defaultPluginName',
+            var pluginName = 'simpleSlider',
                 defaults = {
                     propertyName: "value",
-                    autoPlay: true,
+                    auto: true,
                 };
             var locked = false;
             var myTimer;
@@ -41,13 +41,12 @@
             }
 
             Plugin.prototype.init = function (next_element, prev_element, options, element) {
-                // Place initialization logic here
-                // You already have access to the DOM element and the options via the instance,
-                // e.g., this.element and this.options
                 this.count = $(this.element).find('.slides li').length;
                 this.setWidthUL(element);
                 this.bindEvents(next_element, prev_element);
-                this.runSlideShow(1);
+                if(this.options.auto == true) {
+                    this.runSlideShow(1);
+                }
             };
             
             Plugin.prototype.setWidthUL = function(elm){
@@ -63,9 +62,6 @@
             };
             
             Plugin.prototype.clickPrev = function (prev_element) {
-                // Place initialization logic here
-                // You already have access to the DOM element and the options via the instance,
-                // e.g., this.element and this.options
                 var fn = this;
                 prev_element.click(function(){
                     if(locked != true) {
@@ -86,9 +82,6 @@
             };
             
             Plugin.prototype.clickNext = function (next_element) {
-                // Place initialization logic here
-                // You already have access to the DOM element and the options via the instance,
-                // e.g., this.element and this.options
                 var fn = this;
                 next_element.click(function () {
                     if(locked != true) {
@@ -103,7 +96,6 @@
                         setTimeout(function(){
                             locked = false; // unlock;
                             console.log('un lock');
-                            console.log(locked);
                         },450);
                     }
                 });
@@ -133,9 +125,6 @@
                     if (locked != true) {
                         locked = true;
                         var width = -980;
-                        console.log(locked);
-                        console.log(i);
-                        console.log('count: ' + $fn.count);
                         if (i == $fn.count || i > $fn.count) {
                             i = 0;
                         } 
@@ -156,7 +145,7 @@
                         );
                         i++;
                     }
-                }, 3000);
+                }, this.options.delay);
             };
 
             // You don't need to change something below:

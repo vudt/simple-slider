@@ -1,8 +1,8 @@
 .wrapper {width: 980px; margin:  30px auto}
-#sutrix_slider {overflow-x: hidden; width: 980px}
+#sutrix_slider {overflow-x: hidden; width: 980px; position: relative}
 .slides {display: inline-block}
 .slides li {float: left}
 ul {padding: 0; list-style-type: none}
 ul li {list-style-type: none}
-.arrow-left {float: left}
-.arrow-right {float: right}
+.arrow-left {position: absolute; left: 0; top: 25%; z-index: 9999; display: inline-block; height: 90px; width: 48px; font-size: 0; background: url('../images/a22.png') 0 0 no-repeat; cursor: pointer}
+.arrow-right {position: absolute; right: 0; top: 25%; z-index: 9999; display: inline-block; height: 90px; width: 48px; font-size: 0; background: url('../images/a22.png') -70px 0 no-repeat; cursor: pointer}
